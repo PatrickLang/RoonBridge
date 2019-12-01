@@ -8,8 +8,9 @@ FROM debian:jessie
 MAINTAINER mike@mikedickey.com
 
 # Location of Roon's latest Linux installer
-ENV ROON_INSTALLER roonbridge-installer-linuxx64.sh
-ENV ROON_INSTALLER_URL http://download.roonlabs.com/builds/${ROON_INSTALLER}
+# ENV ROON_INSTALLER roonbridge-installer-linuxx64.sh
+ENV ROON_INSTALLER roonbridge-installer.sh
+ENV ROON_INSTALLER_BASEURL http://download.roonlabs.com/builds/roonbridge-installer-linux${roonarch}.sh
 
 # These are expected by Roon's startup script
 ENV ROON_DATAROOT /var/roon
@@ -21,7 +22,25 @@ RUN apt-get update \
 	&& apt-get clean && apt-get autoclean
 
 # Grab installer and script to run it
-ADD ${ROON_INSTALLER_URL} /tmp
+# ADD ${ROON_INSTALLER_URL} /tmp
+RUN case $(uname -m) in \
+      armv7l) \
+        roonarch=armv7hf \
+        ;;
+      armv8) \
+        roonarch=armv8 \
+        ;; \
+      x86_64) \
+        roonarch=x64 \
+        ;; \
+      x86) \
+        roonarch=x86 \
+        ;; \
+      *) \
+        echo Unknown machine type $(uname -m) \
+        exit 1 \
+      esac && \
+    curl $ROON_INSTALLER_BASEURL -Lo ${ROON_INSTALLER}
 COPY run_installer.sh /tmp
 
 # Fix installer permissions

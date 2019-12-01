@@ -1,12 +1,29 @@
 # RoonBridge
-Dockerfile for RoonBridge on Linux x86_64
+Dockerfile for RoonBridge on Linux x86, x86_64, armv7hf, and armv8
 
-Roon data files are stored in /var/roon.
+
+
+
+Open Questions
+
+- [ ] Roon data files are stored in /var/roon. is this necessary to persist?
 
 You currently must use the "host" networking driver with this.
 
-Note: I have not tested this, but seems like it should work =)
 
-Example:
 
-    docker run --name RoonBridge --net=host -d -v /home/roon:/var/roon mikedickey/roonbridge
+
+## Building
+
+```bash
+docker build -t roonbridge .
+```
+
+## Running
+
+```bash
+docker run --name RoonBridge --net=host -d -v /home/roon:/var/roon roonbridge
+```
+
+
+
