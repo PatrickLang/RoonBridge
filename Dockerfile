@@ -23,10 +23,11 @@ RUN apt-get update \
 
 # Grab installer and script to run it
 # ADD ${ROON_INSTALLER_URL} /tmp
+WORKDIR /tmp
 RUN case $(uname -m) in \
       armv7l) \
         roonarch=armv7hf \
-        ;;
+        ;; \
       armv8) \
         roonarch=armv8 \
         ;; \
@@ -39,6 +40,7 @@ RUN case $(uname -m) in \
       *) \
         echo Unknown machine type $(uname -m) \
         exit 1 \
+        ;; \
       esac && \
     curl $ROON_INSTALLER_BASEURL -Lo ${ROON_INSTALLER}
 COPY run_installer.sh /tmp
