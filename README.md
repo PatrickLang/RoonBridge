@@ -21,7 +21,7 @@ docker run --name RoonBridge --rm --device /dev/snd --net=host -d -v roonbridge:
 
 ## Example setups
 
-### Running on ODroid XU4/HC
+### Running on ODroid XU4/HC (armv7hf)
 
 This works great with the provided Ubuntu 18.04 LTS image. I'm using a USB DAC (Meridian Explorer) with the line output hooked up to my home theatre system.
 
@@ -30,3 +30,14 @@ In addition to building the container, I needed to make sure that the `snd-usb-a
 1. Run `modprobe snd-usb-audio`
 2. Modify `/etc/modules-load.d/modules.conf` and add `snd-usb-audio`:w
 
+### Raspberry Pi 2 (armv7hf)
+
+Verified to build & run, haven't tested with audio yet
+
+### Compulab Fitlet2 (x86_64)
+
+Verified to build & run, haven't tested with audio yet
+
+### Rock64 (armv8)
+
+Not tested yet, hardware not booting after a power glitch
