@@ -1,7 +1,7 @@
 # RoonBridge
 Dockerfile for RoonBridge on Linux x86, x86_64, armv7hf, and armv8
 
-I don't push this to a private registry, so it's best to build it yourself. Roon auto updates can be applied inside the container as with normal installs.
+I don't push this to a public registry, so it's best to build it yourself. Roon auto updates can be applied inside the container as with normal installs.
 
 ## Building it
 
