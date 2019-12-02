@@ -10,7 +10,6 @@ MAINTAINER mike@mikedickey.com
 # Location of Roon's latest Linux installer
 # ENV ROON_INSTALLER roonbridge-installer-linuxx64.sh
 ENV ROON_INSTALLER roonbridge-installer.sh
-ENV ROON_INSTALLER_BASEURL http://download.roonlabs.com/builds/roonbridge-installer-linux${roonarch}.sh
 
 # These are expected by Roon's startup script
 ENV ROON_DATAROOT /var/roon
@@ -42,7 +41,8 @@ RUN case $(uname -m) in \
         exit 1 \
         ;; \
       esac && \
-    curl $ROON_INSTALLER_BASEURL -Lo ${ROON_INSTALLER}
+    echo Downloading $ROON_INSTALLER_BASEURL && \
+    curl http://download.roonlabs.com/builds/roonbridge-installer-linux${roonarch}.sh -Lo ${ROON_INSTALLER}
 COPY run_installer.sh /tmp
 
 # Fix installer permissions
