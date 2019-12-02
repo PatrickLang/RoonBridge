@@ -17,7 +17,7 @@ docker run --name RoonBridge --rm --device /dev/snd --net=host -d -v roonbridge:
 
 - `host` networking is required because Roon relies on a multicast protocol (SSDP I think, need to verify) to discover the Roon core.
 - `/dev/snd` needs to be shared with the container as well. This assumes only 1 sound device is on the system, and already configured.
-
+- A named volume is used to persist logs and the settings file.
 
 ## Example setups
 
