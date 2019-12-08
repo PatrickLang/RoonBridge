@@ -28,11 +28,11 @@ This works great with the provided Ubuntu 18.04 LTS image. I'm using a USB DAC (
 In addition to building the container, I needed to make sure that the `snd-usb-audio` module was loaded.
 
 1. Run `modprobe snd-usb-audio`
-2. Modify `/etc/modules-load.d/modules.conf` and add `snd-usb-audio`:w
+2. Modify `/etc/modules-load.d/modules.conf` and add `snd-usb-audio`
 
 ### Raspberry Pi 2 (armv7hf)
 
-Verified to build & run, haven't tested with audio yet
+Same instructions as above to build & run on `Raspbian GNU/Linux 10 (buster)`. I didn't need any extra steps to get `snd-usb-audio` loaded.
 
 ### Compulab Fitlet2 (x86_64)
 
